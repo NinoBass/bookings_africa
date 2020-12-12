@@ -10,10 +10,10 @@ const String image1 = "assets/image 1.png";
 List<String> imagePath = [
   //High quality pictures
   "assets/a.jpg",
-  "assets/c.jpg",
+  "assets/g.jpg",
+  "assets/h.jpg",
   "assets/d.jpg",
   "assets/e.jpg",
   "assets/f.jpg",
-  "assets/g.jpg",
-  "assets/h.jpg",
+  "assets/c.jpg",
 ];

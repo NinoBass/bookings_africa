@@ -123,9 +123,9 @@ class _UserCardState extends State<UserCard> {
                           borderRadius: BorderRadius.circular(60.0),
                           boxShadow: [
                             BoxShadow(
-                                blurRadius: 1.0,
-                                offset: Offset(0, 1.0),
-                                color: Color(0xFFCACACA).withOpacity(0.5)),
+                                blurRadius: 5.0,
+                                offset: Offset(0, 2.0),
+                                color: Color(0xFF3F3F3F).withOpacity(0.15)),
                           ],
                         ),
                         child: Text(
@@ -144,9 +144,9 @@ class _UserCardState extends State<UserCard> {
                           borderRadius: BorderRadius.circular(60.0),
                           boxShadow: [
                             BoxShadow(
-                                blurRadius: 1.0,
-                                offset: Offset(0, 1.0),
-                                color: Color(0xFFCACACA).withOpacity(0.5)),
+                                blurRadius: 4.5,
+                                offset: Offset(0, 2.0),
+                                color: Color(0xFF3F3F3F).withOpacity(0.2)),
                           ],
                         ),
                         child: Image.asset(
@@ -206,7 +206,7 @@ class _UserCardState extends State<UserCard> {
                   child: Text('View Profile',
                       style: TextStyle(
                           letterSpacing: 0.3,
-                          color: Colors.black54,
+                          color: Colors.black45,
                           fontFamily: 'HelveticaM',
                           fontStyle: FontStyle.normal,
                           fontWeight: FontWeight.w600,

@@ -108,7 +108,7 @@ class _HomeViewState extends State<HomeView> {
                     'ADVANCED FILTER',
                     style: TextStyle(
                         letterSpacing: 0.5,
-                        color: Colors.black,
+                        color: Colors.black87,
                         fontFamily: 'HelveticaM',
                         fontStyle: FontStyle.normal,
                         fontSize: width * 0.03,
