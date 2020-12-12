@@ -126,7 +126,7 @@ class _HomeViewState extends State<HomeView> {
                   future: futureUserInfo,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.none &&
-                        snapshot.hasData) {
+                        snapshot.hasData == null) {
                       return Center(
                           child: CircularProgressIndicator(
                         backgroundColor: Colors.black,
