@@ -69,7 +69,7 @@ class _UserCardState extends State<UserCard> {
                               Border.all(color: kprimaryColor.withOpacity(1.0)),
                           borderRadius: BorderRadius.circular(20.0),
                           image: DecorationImage(
-                            image: AssetImage(
+                            image: NetworkImage(
                               "${widget.avatar}",
                             ),
                             fit: BoxFit.cover,
