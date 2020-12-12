@@ -86,7 +86,7 @@ class _UserCardState extends State<UserCard> {
                             height: 4,
                           ),
                           Text(
-                            '${widget.firstName}' + ' ${widget.lastName}',
+                            "${widget.firstName}" + " ${widget.lastName}",
                             style: TextStyle(
                                 letterSpacing: 0.3,
                                 color: Colors.white,

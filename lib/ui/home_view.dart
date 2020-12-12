@@ -142,8 +142,8 @@ class _HomeViewState extends State<HomeView> {
                               return UserCard(
                                 id: data[index].id,
                                 email: data[index].email,
-                                // firstName: data[index].first_name,
-                                // lastName: data[index].last_name,
+                                firstName: data[index].firstName,
+                                lastName: data[index].lastName,
                                 avatar: data[index].avatar,
                                 imagePath: imagePath[index],
                               );
