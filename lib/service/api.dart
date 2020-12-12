@@ -12,17 +12,9 @@ Future<List<UserInfo>> getUserInfo() async {
 
     List<UserInfo> userInfo = [];
     Iterable<dynamic> list = jsonData["data"];
+    userInfo = list.map((items) => UserInfo.fromJson(items)).toList();
 
-    for (var u in list) {
-      UserInfo user = UserInfo(
-          id: u["id"],
-          email: u["email"],
-          firstName: u["first_name"],
-          lastName: u["last_name"],
-          avatar: u["avatar"]);
-      userInfo.add(user);
-    }
-    print(userInfo.length);
+    print(userInfo[0].firstName);
     return userInfo;
   } else {
     throw Exception('Failed to Load UserInfo');
