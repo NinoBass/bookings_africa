@@ -116,7 +116,7 @@ class _UserCardState extends State<UserCard> {
                   right: 25,
                   top: 12,
                   child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
                         decoration: BoxDecoration(

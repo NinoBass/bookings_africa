@@ -42,7 +42,7 @@ class _HomeViewState extends State<HomeView> {
             ),
             searchBox(),
             SizedBox(
-              height: 20,
+              height: 24,
             ),
             Container(
               margin: EdgeInsets.symmetric(
@@ -127,7 +127,11 @@ class _HomeViewState extends State<HomeView> {
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.none &&
                         snapshot.hasData) {
-                      return Center(child: CircularProgressIndicator());
+                      return Center(
+                          child: CircularProgressIndicator(
+                        backgroundColor: Colors.black,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                      ));
                     } else {
                       var data = snapshot.data;
                       return Container(
