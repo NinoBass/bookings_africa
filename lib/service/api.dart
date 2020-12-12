@@ -1,25 +1,30 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
-import 'package:bookings_africa/models/user_info.dart';
 import 'package:http/http.dart' as http;
+import 'package:bookings_africa/models/user_info.dart';
 
-class Api {
-  List userInfo;
+Future<List<UserInfo>> getUserInfo() async {
+  final String apiUrl = 'https://reqres.in/api/users';
+  var data = await http.get(apiUrl, headers: {"Accept": "application/json"});
 
-  //Get userinfo request
-  Future<List> getUserInfo() async {
-    final response = await http.get(
-      'https://reqres.in/api/users',
-      headers: {
-        HttpHeaders.authorizationHeader: 'Content-type: application/json'
-      },
-    );
-    if (response.statusCode == 200) {
-      final jsonData = jsonDecode(response.body);
-      Iterable<dynamic> list = jsonData["data"];
-      userInfo = list.map((items) => UserInfo.fromJson(items)).toList();
-      return userInfo;
+  if (data.statusCode == 200) {
+    final jsonData = json.decode(data.body);
+
+    List<UserInfo> userInfo = [];
+    Iterable<dynamic> list = jsonData["data"];
+
+    for (var u in list) {
+      UserInfo user = UserInfo(
+          id: u["id"],
+          email: u["email"],
+          firstName: u["first_name"],
+          lastName: u["last_name"],
+          avatar: u["avatar"]);
+      userInfo.add(user);
     }
+    print(userInfo.length);
+    return userInfo;
+  } else {
+    throw Exception('Failed to Load UserInfo');
   }
 }

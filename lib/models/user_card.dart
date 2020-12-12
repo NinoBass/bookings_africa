@@ -28,7 +28,7 @@ class UserCard extends StatefulWidget {
 class _UserCardState extends State<UserCard> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    double width = MediaQuery.of(context).size.width;
     return Card(
       shadowColor: Color(0xFFB0CCE1).withOpacity(0.3),
       child: Container(
@@ -44,7 +44,7 @@ class _UserCardState extends State<UserCard> {
                 Container(
                   padding: EdgeInsets.all(20),
                   height: 120,
-                  width: MediaQuery.of(context).size.width,
+                  width: width,
                   decoration: BoxDecoration(
                       image: DecorationImage(
                           image: AssetImage(widget.imagePath),
@@ -66,6 +66,10 @@ class _UserCardState extends State<UserCard> {
                       Container(
                         height: 37.0,
                         width: 37.0,
+                        // child: CircleAvatar(
+                        //   radius : 20,
+                        //   backgroundColor: kprimaryColor.withOpacity(1.0),
+                        // ),
                         decoration: BoxDecoration(
                           border:
                               Border.all(color: kprimaryColor.withOpacity(1.0)),
@@ -79,7 +83,7 @@ class _UserCardState extends State<UserCard> {
                         ),
                       ),
                       SizedBox(
-                        width: size.width * 0.034,
+                        width: width * 0.034,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,

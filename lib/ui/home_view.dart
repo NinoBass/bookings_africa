@@ -1,8 +1,9 @@
 import 'package:bookings_africa/constants.dart';
 import 'package:bookings_africa/models/user_card.dart';
+import 'package:bookings_africa/models/user_info.dart';
+import 'package:bookings_africa/service/api.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
 
 class HomeView extends StatefulWidget {
   @override
@@ -10,31 +11,17 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  List<String> _imagePath = [
-    //High quality pictures
-  ];
-  List data;
-  // final String apiUrl = 'https://reqres.in/api/users';
+  Future<List<UserInfo>> futureUserInfo;
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   this.getJsonData();
-  // }
-
-  // Future<String> getJsonData() async {
-  //   http.Response response =
-  //       await http.get(apiUrl, headers: {"Accept": "application/json"});
-
-  //   setState(() {
-  //     var convertDataToJson = json.decode(response.body);
-  //     data = convertDataToJson;
-  //   });
-  //   return "Success";
-  // }
+  @override
+  void initState() {
+    super.initState();
+    futureUserInfo = getUserInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -73,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
                           color: ksecondaryColor.withOpacity(1.0),
                           fontFamily: 'HelveticaM',
                           fontStyle: FontStyle.normal,
-                          fontSize: 13,
+                          fontSize: width * 0.03,
                           fontWeight: FontWeight.w700),
                     ),
                     Container(
@@ -103,7 +90,7 @@ class _HomeViewState extends State<HomeView> {
                                 color: kprimaryColor.withOpacity(1.0),
                                 fontFamily: 'HelveticaB',
                                 fontStyle: FontStyle.normal,
-                                fontSize: 13,
+                                fontSize: width * 0.03,
                                 fontWeight: FontWeight.w900),
                           ),
                           Icon(
@@ -124,7 +111,7 @@ class _HomeViewState extends State<HomeView> {
                           color: Colors.black,
                           fontFamily: 'HelveticaM',
                           fontStyle: FontStyle.normal,
-                          fontSize: 13,
+                          fontSize: width * 0.03,
                           fontWeight: FontWeight.w700),
                     ),
                   ],
@@ -133,31 +120,36 @@ class _HomeViewState extends State<HomeView> {
               SizedBox(
                 height: 18,
               ),
-              // FutureBuilder(
-              //   future: getFutureData(),
-              //   builder: (context, snapshot) {
-              //     if (snapshot.connectionState == ConnectionState.none &&
-              //         snapshot.hasData == null) {
-              //       return UserCard();
-              //     } else {
-              //       return 
-                    ListView.builder(
-                      itemCount:
-                          snapshot.data == null ? 0 : snapshot.data.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return UserCard(
-                          id: snapshot.data[index].id,
-                          email: snapshot.data[index].email,
-                          firstname: snapshot.data[index].first_name,
-                          lastname: snapshot.data[index].last_name,
-                          avatar: snapshot.data[index].avatar,
-                          imagePath: _imagePath[index],
-                        );
-                      },
-                    ),
-              //     }
-              //   },
-              // ),
+              Container(
+                margin: EdgeInsets.symmetric(
+                  horizontal: 20,
+                ),
+                child: FutureBuilder(
+                  future: futureUserInfo,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.none &&
+                        snapshot.hasData) {
+                      return Center(child: CircularProgressIndicator());
+                    } else {
+                      final data = snapshot.data;
+                      return ListView.builder(
+                        itemCount: data == null ? 0 : data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return UserCard(
+                            id: data[index].id,
+                            email: data[index].email,
+                            firstname: data[index].first_name,
+                            lastname: data[index].last_name,
+                            avatar: data[index].avatar,
+                            imagePath: imagePath[index],
+                          );
+                        },
+                        shrinkWrap: true,
+                      );
+                    }
+                  },
+                ),
+              ),
             ],
           ),
         ),
@@ -165,11 +157,6 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
-Future<String> getFutureData() async =>
-    await Future.delayed(Duration(seconds: 3), () {
-      return 'Data Received';
-    });
 
 Widget header() {
   return Container(
