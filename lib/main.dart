@@ -10,9 +10,6 @@ void main() async {
       scaffoldBackgroundColor: Colors.white,
     ),
     initialRoute: '/home',
-    routes: {
-      // '/': (context) => Loading();
-      '/home': (context) => HomeView()
-    },
+    routes: {'/home': (context) => HomeView()},
   ));
 }

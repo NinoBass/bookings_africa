@@ -1,9 +1,9 @@
 class UserInfo {
   int id;
   String email;
-  final String firstName;
-  final String lastName;
-  final String avatar;
+  String firstName;
+  String lastName;
+  String avatar;
 
   UserInfo({
     this.id,

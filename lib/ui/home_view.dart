@@ -22,6 +22,7 @@ class _HomeViewState extends State<HomeView> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: () {
         FocusScopeNode currentFocus = FocusScope.of(context);
@@ -48,8 +49,8 @@ class _HomeViewState extends State<HomeView> {
               margin: EdgeInsets.symmetric(
                 horizontal: 24,
               ),
-              // color: Colors.green,
-              height: 20,
+              color: Colors.green,
+              height: height * 0.052,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
@@ -126,7 +127,7 @@ class _HomeViewState extends State<HomeView> {
                   future: futureUserInfo,
                   builder: (context, snapshot) {
                     if (snapshot.connectionState == ConnectionState.none &&
-                        snapshot.hasData) {
+                        snapshot.hasData == null) {
                       return Center(
                           child: CircularProgressIndicator(
                         backgroundColor: Colors.black,
