@@ -49,7 +49,7 @@ class _HomeViewState extends State<HomeView> {
               margin: EdgeInsets.symmetric(
                 horizontal: 24,
               ),
-              color: Colors.green,
+              // color: Colors.green,
               height: height * 0.052,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
